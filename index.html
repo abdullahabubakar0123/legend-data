@@ -4,10 +4,6 @@
   <title>Legend AA Enterprise - Data Hub</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- PWA ADDITION -->
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#111827">
-
   <style>
     body {
       margin: 0;
@@ -272,20 +268,87 @@
 <script>
 let cart = [];
 
-/* (ALL YOUR ORIGINAL JS REMAINS EXACTLY THE SAME ABOVE THIS POINT) */
+function updateCart() {
+  document.getElementById("cartCount").innerText = cart.length;
 
-/* PWA ADDITION ONLY — NO CHANGES TO YOUR LOGIC */
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('sw.js');
+  let html = "";
+  cart.forEach((item, i) => {
+    html += `
+      <div class="cart-item">
+        ${item.name} - ${item.price}
+        <br>
+        <button class="remove" onclick="removeItem(${i})">Remove</button>
+      </div>
+    `;
   });
+
+  document.getElementById("cartItems").innerHTML = html;
+  document.getElementById("totalItems").innerText = cart.length;
 }
 
-let deferredPrompt;
-window.addEventListener('beforeinstallprompt', (e) => {
-  e.preventDefault();
-  deferredPrompt = e;
-});
+function addToCart(name, price) {
+  cart.push({ name, price });
+  updateCart();
+}
+
+function removeItem(index) {
+  cart.splice(index, 1);
+  updateCart();
+}
+
+function show(id) {
+  document.getElementById("networks").style.display = "none";
+  document.getElementById("mtn").style.display = "none";
+  document.getElementById("telecel").style.display = "none";
+  document.getElementById("airteltigo").style.display = "none";
+
+  document.getElementById(id).style.display = "block";
+}
+
+function goBack() {
+  document.getElementById("networks").style.display = "block";
+  document.getElementById("mtn").style.display = "none";
+  document.getElementById("telecel").style.display = "none";
+  document.getElementById("airteltigo").style.display = "none";
+}
+
+function buy(name, price) {
+  addToCart(name, price);
+
+  document.getElementById("networks").style.display = "none";
+  document.getElementById("mtn").style.display = "none";
+  document.getElementById("telecel").style.display = "none";
+  document.getElementById("airteltigo").style.display = "none";
+
+  document.getElementById("confirm").style.display = "block";
+
+  document.getElementById("bundle").innerText = name;
+  document.getElementById("price").innerText = price;
+
+  document.getElementById("wa").href =
+    "https://wa.me/233256080002?text=I want " + name + " - " + price;
+}
+
+function home() {
+  document.getElementById("confirm").style.display = "none";
+  document.getElementById("networks").style.display = "block";
+}
+
+function openCart() {
+  document.getElementById("networks").style.display = "none";
+  document.getElementById("mtn").style.display = "none";
+  document.getElementById("telecel").style.display = "none";
+  document.getElementById("airteltigo").style.display = "none";
+  document.getElementById("confirm").style.display = "none";
+
+  document.getElementById("cartPage").style.display = "block";
+  updateCart();
+}
+
+function closeCart() {
+  document.getElementById("cartPage").style.display = "none";
+  document.getElementById("networks").style.display = "block";
+}
 </script>
 
 </body>
