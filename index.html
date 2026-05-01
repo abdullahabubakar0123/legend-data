@@ -39,7 +39,6 @@
       text-align: left;
     }
 
-    /* NAV BUTTONS */
     .btn {
       padding: 12px 18px;
       margin: 8px;
@@ -49,7 +48,6 @@
       color: white;
       cursor: pointer;
       font-size: 15px;
-      transition: 0.2s;
     }
 
     .btn:hover {
@@ -57,7 +55,6 @@
       color: black;
     }
 
-    /* GRID */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
@@ -65,18 +62,11 @@
       margin-top: 10px;
     }
 
-    /* CARD */
     .card {
       background: #1f2937;
       padding: 14px;
       border-radius: 14px;
       text-align: center;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.3);
-      transition: 0.2s;
-    }
-
-    .card:hover {
-      transform: translateY(-3px);
     }
 
     .price {
@@ -85,23 +75,17 @@
       font-weight: bold;
     }
 
-    /* BUY BUTTON */
     .buy {
       display: inline-block;
       margin-top: 8px;
       padding: 8px 12px;
       background: #06b6d4;
       color: black;
-      text-decoration: none;
       border-radius: 10px;
       font-weight: bold;
+      cursor: pointer;
     }
 
-    .buy:hover {
-      background: #22d3ee;
-    }
-
-    /* BACK */
     .back {
       margin-top: 25px;
       display: inline-block;
@@ -110,13 +94,23 @@
       font-weight: bold;
     }
 
-    .hidden {
-      display: none;
-    }
+    .hidden { display: none; }
 
     .top-buttons {
       text-align: center;
       margin-top: 10px;
+    }
+
+    /* CONFIRM PAGE */
+    #confirm {
+      display: none;
+      text-align: center;
+      padding: 40px 15px;
+    }
+
+    #confirm .card {
+      max-width: 400px;
+      margin: auto;
     }
   </style>
 </head>
@@ -130,7 +124,7 @@
 
 <div class="container">
 
-  <!-- NAV -->
+  <!-- MENU -->
   <div id="networks" class="top-buttons">
     <h2>Select Network</h2>
     <button class="btn" onclick="show('mtn')">MTN</button>
@@ -144,98 +138,128 @@
 
     <h3>Small Bundles</h3>
     <div class="grid">
-      <div class="card">1GB<div class="price">6 GHC</div><a class="buy" href="https://wa.me/233256080002?text=1GB MTN">Buy</a></div>
-      <div class="card">2GB<div class="price">11 GHC</div><a class="buy" href="https://wa.me/233256080002?text=2GB MTN">Buy</a></div>
-      <div class="card">3GB<div class="price">16 GHC</div><a class="buy" href="https://wa.me/233256080002?text=3GB MTN">Buy</a></div>
-      <div class="card">4GB<div class="price">21 GHC</div><a class="buy" href="https://wa.me/233256080002?text=4GB MTN">Buy</a></div>
-      <div class="card">5GB<div class="price">25 GHC</div><a class="buy" href="https://wa.me/233256080002?text=5GB MTN">Buy</a></div>
+      <div class="card">1GB<div class="price">6 GHC</div><div class="buy" onclick="buy('1GB MTN','6 GHC')">Buy</div></div>
+      <div class="card">2GB<div class="price">11 GHC</div><div class="buy" onclick="buy('2GB MTN','11 GHC')">Buy</div></div>
+      <div class="card">3GB<div class="price">16 GHC</div><div class="buy" onclick="buy('3GB MTN','16 GHC')">Buy</div></div>
+      <div class="card">4GB<div class="price">21 GHC</div><div class="buy" onclick="buy('4GB MTN','21 GHC')">Buy</div></div>
+      <div class="card">5GB<div class="price">25 GHC</div><div class="buy" onclick="buy('5GB MTN','25 GHC')">Buy</div></div>
     </div>
 
     <h3>Medium Bundles</h3>
     <div class="grid">
-      <div class="card">6GB<div class="price">30 GHC</div><a class="buy" href="https://wa.me/233256080002?text=6GB MTN">Buy</a></div>
-      <div class="card">8GB<div class="price">41 GHC</div><a class="buy" href="https://wa.me/233256080002?text=8GB MTN">Buy</a></div>
-      <div class="card">10GB<div class="price">45 GHC</div><a class="buy" href="https://wa.me/233256080002?text=10GB MTN">Buy</a></div>
-      <div class="card">15GB<div class="price">66 GHC</div><a class="buy" href="https://wa.me/233256080002?text=15GB MTN">Buy</a></div>
-      <div class="card">20GB<div class="price">86 GHC</div><a class="buy" href="https://wa.me/233256080002?text=20GB MTN">Buy</a></div>
+      <div class="card">6GB<div class="price">30 GHC</div><div class="buy" onclick="buy('6GB MTN','30 GHC')">Buy</div></div>
+      <div class="card">8GB<div class="price">41 GHC</div><div class="buy" onclick="buy('8GB MTN','41 GHC')">Buy</div></div>
+      <div class="card">10GB<div class="price">45 GHC</div><div class="buy" onclick="buy('10GB MTN','45 GHC')">Buy</div></div>
+      <div class="card">15GB<div class="price">66 GHC</div><div class="buy" onclick="buy('15GB MTN','66 GHC')">Buy</div></div>
+      <div class="card">20GB<div class="price">86 GHC</div><div class="buy" onclick="buy('20GB MTN','86 GHC')">Buy</div></div>
     </div>
 
     <h3>Big Bundles</h3>
     <div class="grid">
-      <div class="card">25GB<div class="price">108 GHC</div><a class="buy" href="https://wa.me/233256080002?text=25GB MTN">Buy</a></div>
-      <div class="card">30GB<div class="price">128 GHC</div><a class="buy" href="https://wa.me/233256080002?text=30GB MTN">Buy</a></div>
-      <div class="card">40GB<div class="price">167 GHC</div><a class="buy" href="https://wa.me/233256080002?text=40GB MTN">Buy</a></div>
-      <div class="card">50GB<div class="price">202 GHC</div><a class="buy" href="https://wa.me/233256080002?text=50GB MTN">Buy</a></div>
+      <div class="card">25GB<div class="price">108 GHC</div><div class="buy" onclick="buy('25GB MTN','108 GHC')">Buy</div></div>
+      <div class="card">30GB<div class="price">128 GHC</div><div class="buy" onclick="buy('30GB MTN','128 GHC')">Buy</div></div>
+      <div class="card">40GB<div class="price">167 GHC</div><div class="buy" onclick="buy('40GB MTN','167 GHC')">Buy</div></div>
+      <div class="card">50GB<div class="price">202 GHC</div><div class="buy" onclick="buy('50GB MTN','202 GHC')">Buy</div></div>
     </div>
 
     <div class="back" onclick="goBack()">← Back</div>
   </div>
 
   <!-- TELECEL -->
-<div id="telecel" class="hidden">
-  <h2>Telecel Bundles</h2>
+  <div id="telecel" class="hidden">
+    <h2>Telecel Bundles</h2>
 
-  <h3>Standard</h3>
-  <div class="grid">
-    <div class="card">5GB - 27 GHC <a class="buy" href="https://wa.me/233256080002?text=5GB Telecel">Buy</a></div>
-    <div class="card">10GB - 45 GHC <a class="buy" href="https://wa.me/233256080002?text=10GB Telecel">Buy</a></div>
-    <div class="card">15GB - 66 GHC <a class="buy" href="https://wa.me/233256080002?text=15GB Telecel">Buy</a></div>
-    <div class="card">20GB - 82 GHC <a class="buy" href="https://wa.me/233256080002?text=20GB Telecel">Buy</a></div>
+    <div class="grid">
+      <div class="card">5GB - 27 GHC <div class="buy" onclick="buy('5GB Telecel','27 GHC')">Buy</div></div>
+      <div class="card">10GB - 45 GHC <div class="buy" onclick="buy('10GB Telecel','45 GHC')">Buy</div></div>
+      <div class="card">15GB - 66 GHC <div class="buy" onclick="buy('15GB Telecel','66 GHC')">Buy</div></div>
+      <div class="card">20GB - 82 GHC <div class="buy" onclick="buy('20GB Telecel','82 GHC')">Buy</div></div>
+      <div class="card">25GB - 100 GHC <div class="buy" onclick="buy('25GB Telecel','100 GHC')">Buy</div></div>
+      <div class="card">30GB - 117 GHC <div class="buy" onclick="buy('30GB Telecel','117 GHC')">Buy</div></div>
+      <div class="card">40GB - 154 GHC <div class="buy" onclick="buy('40GB Telecel','154 GHC')">Buy</div></div>
+      <div class="card">50GB - 194 GHC <div class="buy" onclick="buy('50GB Telecel','194 GHC')">Buy</div></div>
+      <div class="card">100GB - 383 GHC <div class="buy" onclick="buy('100GB Telecel','383 GHC')">Buy</div></div>
+    </div>
+
+    <div class="back" onclick="goBack()">← Back</div>
   </div>
-
-  <h3>Large</h3>
-  <div class="grid">
-    <div class="card">25GB - 100 GHC <a class="buy" href="https://wa.me/233256080002?text=25GB Telecel">Buy</a></div>
-    <div class="card">30GB - 117 GHC <a class="buy" href="https://wa.me/233256080002?text=30GB Telecel">Buy</a></div>
-    <div class="card">40GB - 154 GHC <a class="buy" href="https://wa.me/233256080002?text=40GB Telecel">Buy</a></div>
-    <div class="card">50GB - 194 GHC <a class="buy" href="https://wa.me/233256080002?text=50GB Telecel">Buy</a></div>
-    <div class="card">100GB - 383 GHC <a class="buy" href="https://wa.me/233256080002?text=100GB Telecel">Buy</a></div>
-  </div>
-
-  <div class="back" onclick="goBack()">← Back</div>
-</div>
 
   <!-- AIRTELTIGO -->
-<div id="airteltigo" class="hidden">
-  <h2>AirtelTigo Bundles</h2>
+  <div id="airteltigo" class="hidden">
+    <h2>AirtelTigo Bundles</h2>
 
-  <h3>Small</h3>
-  <div class="grid">
-    <div class="card">1GB - 6 GHC <a class="buy" href="https://wa.me/233256080002?text=1GB AirtelTigo">Buy</a></div>
-    <div class="card">2GB - 11 GHC <a class="buy" href="https://wa.me/233256080002?text=2GB AirtelTigo">Buy</a></div>
-    <div class="card">3GB - 15 GHC <a class="buy" href="https://wa.me/233256080002?text=3GB AirtelTigo">Buy</a></div>
-    <div class="card">4GB - 19 GHC <a class="buy" href="https://wa.me/233256080002?text=4GB AirtelTigo">Buy</a></div>
-    <div class="card">5GB - 24 GHC <a class="buy" href="https://wa.me/233256080002?text=5GB AirtelTigo">Buy</a></div>
+    <div class="grid">
+      <div class="card">1GB - 6 GHC <div class="buy" onclick="buy('1GB AirtelTigo','6 GHC')">Buy</div></div>
+      <div class="card">2GB - 11 GHC <div class="buy" onclick="buy('2GB AirtelTigo','11 GHC')">Buy</div></div>
+      <div class="card">3GB - 15 GHC <div class="buy" onclick="buy('3GB AirtelTigo','15 GHC')">Buy</div></div>
+      <div class="card">4GB - 19 GHC <div class="buy" onclick="buy('4GB AirtelTigo','19 GHC')">Buy</div></div>
+      <div class="card">5GB - 24 GHC <div class="buy" onclick="buy('5GB AirtelTigo','24 GHC')">Buy</div></div>
+      <div class="card">6GB - 28 GHC <div class="buy" onclick="buy('6GB AirtelTigo','28 GHC')">Buy</div></div>
+      <div class="card">8GB - 36 GHC <div class="buy" onclick="buy('8GB AirtelTigo','36 GHC')">Buy</div></div>
+      <div class="card">10GB - 43 GHC <div class="buy" onclick="buy('10GB AirtelTigo','43 GHC')">Buy</div></div>
+      <div class="card">12GB - 52 GHC <div class="buy" onclick="buy('12GB AirtelTigo','52 GHC')">Buy</div></div>
+      <div class="card">15GB - 64 GHC <div class="buy" onclick="buy('15GB AirtelTigo','64 GHC')">Buy</div></div>
+      <div class="card">20GB - 80 GHC <div class="buy" onclick="buy('20GB AirtelTigo','80 GHC')">Buy</div></div>
+      <div class="card">25GB - 103 GHC <div class="buy" onclick="buy('25GB AirtelTigo','103 GHC')">Buy</div></div>
+    </div>
+
+    <div class="back" onclick="goBack()">← Back</div>
   </div>
 
-  <h3>Large</h3>
-  <div class="grid">
-    <div class="card">6GB - 28 GHC <a class="buy" href="https://wa.me/233256080002?text=6GB AirtelTigo">Buy</a></div>
-    <div class="card">8GB - 36 GHC <a class="buy" href="https://wa.me/233256080002?text=8GB AirtelTigo">Buy</a></div>
-    <div class="card">10GB - 43 GHC <a class="buy" href="https://wa.me/233256080002?text=10GB AirtelTigo">Buy</a></div>
-    <div class="card">12GB - 52 GHC <a class="buy" href="https://wa.me/233256080002?text=12GB AirtelTigo">Buy</a></div>
-    <div class="card">15GB - 64 GHC <a class="buy" href="https://wa.me/233256080002?text=15GB AirtelTigo">Buy</a></div>
-    <div class="card">20GB - 80 GHC <a class="buy" href="https://wa.me/233256080002?text=20GB AirtelTigo">Buy</a></div>
-    <div class="card">25GB - 103 GHC <a class="buy" href="https://wa.me/233256080002?text=25GB AirtelTigo">Buy</a></div>
-  </div>
+  <!-- CONFIRM -->
+  <div id="confirm">
+    <h2>Order Confirmation</h2>
 
-  <div class="back" onclick="goBack()">← Back</div>
-</div>
+    <div class="card">
+      <h3 id="bundle"></h3>
+      <p id="price"></p>
+    </div>
+
+    <a id="wa" class="buy" style="margin-top:20px; display:inline-block;">
+      Confirm on WhatsApp
+    </a>
+
+    <div class="back" onclick="home()">← Back</div>
+  </div>
 
 </div>
 
 <script>
-  function show(id) {
-    document.getElementById("networks").style.display = "none";
-    document.getElementById(id).style.display = "block";
-  }
+function show(id) {
+  document.getElementById("networks").style.display = "none";
+  document.getElementById("mtn").style.display = "none";
+  document.getElementById("telecel").style.display = "none";
+  document.getElementById("airteltigo").style.display = "none";
 
-  function goBack() {
-    document.getElementById("networks").style.display = "block";
-    document.getElementById("mtn").style.display = "none";
-    document.getElementById("telecel").style.display = "none";
-    document.getElementById("airteltigo").style.display = "none";
-  }
+  document.getElementById(id).style.display = "block";
+}
+
+function goBack() {
+  document.getElementById("networks").style.display = "block";
+  document.getElementById("mtn").style.display = "none";
+  document.getElementById("telecel").style.display = "none";
+  document.getElementById("airteltigo").style.display = "none";
+}
+
+function buy(name, price) {
+  document.getElementById("networks").style.display = "none";
+  document.getElementById("mtn").style.display = "none";
+  document.getElementById("telecel").style.display = "none";
+  document.getElementById("airteltigo").style.display = "none";
+
+  document.getElementById("confirm").style.display = "block";
+
+  document.getElementById("bundle").innerText = name;
+  document.getElementById("price").innerText = price;
+
+  document.getElementById("wa").href =
+    "https://wa.me/233256080002?text=I want " + name + " - " + price;
+}
+
+function home() {
+  document.getElementById("confirm").style.display = "none";
+  document.getElementById("networks").style.display = "block";
+}
 </script>
 
 </body>
