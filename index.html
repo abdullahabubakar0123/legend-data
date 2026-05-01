@@ -114,7 +114,6 @@
       margin-top: 10px;
     }
 
-    /* CART */
     #cartPage {
       display: none;
       padding: 20px;
@@ -139,7 +138,6 @@
       margin-top: 5px;
     }
 
-    /* CONFIRM PAGE */
     #confirm {
       display: none;
       text-align: center;
@@ -149,6 +147,15 @@
     #confirm .card {
       max-width: 400px;
       margin: auto;
+    }
+
+    input {
+      width: 90%;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 8px;
+      border: none;
+      outline: none;
     }
   </style>
 </head>
@@ -174,7 +181,7 @@
     <button class="btn" onclick="show('airteltigo')">AirtelTigo</button>
   </div>
 
-  <!-- MTN (UNCHANGED) -->
+  <!-- MTN (UNCHANGED FULL) -->
   <div id="mtn" class="hidden">
     <h2>MTN Bundles</h2>
 
@@ -207,7 +214,7 @@
     <div class="back" onclick="goBack()">← Back</div>
   </div>
 
-  <!-- TELECEL (UNCHANGED) -->
+  <!-- TELECEL FULL -->
   <div id="telecel" class="hidden">
     <h2>Telecel Bundles</h2>
     <div class="grid">
@@ -224,7 +231,7 @@
     <div class="back" onclick="goBack()">← Back</div>
   </div>
 
-  <!-- AIRTELTIGO (UNCHANGED) -->
+  <!-- AIRTELTIGO FULL -->
   <div id="airteltigo" class="hidden">
     <h2>AirtelTigo Bundles</h2>
     <div class="grid">
@@ -255,11 +262,16 @@
   <!-- CONFIRM -->
   <div id="confirm">
     <h2>Order Confirmation</h2>
+
     <div class="card">
       <h3 id="bundle"></h3>
       <p id="price"></p>
+
+      <input id="custName" placeholder="Your Name">
+      <input id="custNumber" placeholder="Receiving Number">
     </div>
-    <a id="wa" class="buy">Confirm on WhatsApp</a>
+
+    <a class="buy" onclick="sendWA()">Confirm on WhatsApp</a>
     <div class="back" onclick="home()">← Back</div>
   </div>
 
@@ -267,19 +279,16 @@
 
 <script>
 let cart = [];
+let selectedBundle = "";
+let selectedPrice = "";
 
 function updateCart() {
   document.getElementById("cartCount").innerText = cart.length;
 
   let html = "";
   cart.forEach((item, i) => {
-    html += `
-      <div class="cart-item">
-        ${item.name} - ${item.price}
-        <br>
-        <button class="remove" onclick="removeItem(${i})">Remove</button>
-      </div>
-    `;
+    html += `<div class="cart-item">${item.name} - ${item.price}<br>
+    <button class="remove" onclick="removeItem(${i})">Remove</button></div>`;
   });
 
   document.getElementById("cartItems").innerHTML = html;
@@ -298,35 +307,36 @@ function removeItem(index) {
 
 function show(id) {
   document.getElementById("networks").style.display = "none";
-  document.getElementById("mtn").style.display = "none";
-  document.getElementById("telecel").style.display = "none";
-  document.getElementById("airteltigo").style.display = "none";
-
   document.getElementById(id).style.display = "block";
 }
 
 function goBack() {
   document.getElementById("networks").style.display = "block";
-  document.getElementById("mtn").style.display = "none";
-  document.getElementById("telecel").style.display = "none";
-  document.getElementById("airteltigo").style.display = "none";
 }
 
 function buy(name, price) {
   addToCart(name, price);
-
   document.getElementById("networks").style.display = "none";
-  document.getElementById("mtn").style.display = "none";
-  document.getElementById("telecel").style.display = "none";
-  document.getElementById("airteltigo").style.display = "none";
-
   document.getElementById("confirm").style.display = "block";
+
+  selectedBundle = name;
+  selectedPrice = price;
 
   document.getElementById("bundle").innerText = name;
   document.getElementById("price").innerText = price;
+}
 
-  document.getElementById("wa").href =
-    "https://wa.me/233256080002?text=I want " + name + " - " + price;
+function sendWA() {
+  let name = document.getElementById("custName").value;
+  let number = document.getElementById("custNumber").value;
+
+  let msg =
+    "ORDER:%0A" +
+    "Bundle: " + selectedBundle + " - " + selectedPrice + "%0A" +
+    "Name: " + name + "%0A" +
+    "Number: " + number;
+
+  window.open("https://wa.me/233256080002?text=" + msg, "_blank");
 }
 
 function home() {
@@ -335,14 +345,7 @@ function home() {
 }
 
 function openCart() {
-  document.getElementById("networks").style.display = "none";
-  document.getElementById("mtn").style.display = "none";
-  document.getElementById("telecel").style.display = "none";
-  document.getElementById("airteltigo").style.display = "none";
-  document.getElementById("confirm").style.display = "none";
-
   document.getElementById("cartPage").style.display = "block";
-  updateCart();
 }
 
 function closeCart() {
