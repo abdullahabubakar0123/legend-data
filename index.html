@@ -1,66 +1,112 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Legend Data</title>
+  <title>Legend AA Enterprise - Data Hub</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
     body {
       margin: 0;
-      font-family: Arial;
+      font-family: Arial, sans-serif;
       background: #0b1220;
       color: white;
-      text-align: center;
     }
 
     header {
-      padding: 20px;
+      padding: 22px;
       background: #111827;
-      font-size: 20px;
+      text-align: center;
+      font-size: 22px;
       font-weight: bold;
+      letter-spacing: 1px;
     }
 
     .container {
       padding: 15px;
+      max-width: 1100px;
+      margin: auto;
     }
 
-    .btn {
-      padding: 12px 20px;
-      margin: 10px;
-      border: none;
-      border-radius: 20px;
-      background: #06b6d4;
-      color: white;
-      cursor: pointer;
-      font-size: 16px;
+    h2 {
+      text-align: center;
+      color: #facc15;
+      margin-top: 20px;
     }
 
     h3 {
       margin-top: 25px;
-      color: #facc15;
+      color: #38bdf8;
+      text-align: left;
     }
 
+    /* NAV BUTTONS */
+    .btn {
+      padding: 12px 18px;
+      margin: 8px;
+      border: none;
+      border-radius: 25px;
+      background: #1f2937;
+      color: white;
+      cursor: pointer;
+      font-size: 15px;
+      transition: 0.2s;
+    }
+
+    .btn:hover {
+      background: #06b6d4;
+      color: black;
+    }
+
+    /* GRID */
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-      gap: 10px;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 12px;
       margin-top: 10px;
     }
 
+    /* CARD */
     .card {
       background: #1f2937;
-      padding: 10px;
-      border-radius: 10px;
+      padding: 14px;
+      border-radius: 14px;
+      text-align: center;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+      transition: 0.2s;
     }
 
+    .card:hover {
+      transform: translateY(-3px);
+    }
+
+    .price {
+      margin: 8px 0;
+      color: #facc15;
+      font-weight: bold;
+    }
+
+    /* BUY BUTTON */
     .buy {
+      display: inline-block;
       margin-top: 8px;
-      display: block;
-      padding: 8px;
-      border-radius: 8px;
-      background: #facc15;
+      padding: 8px 12px;
+      background: #06b6d4;
       color: black;
       text-decoration: none;
+      border-radius: 10px;
+      font-weight: bold;
+    }
+
+    .buy:hover {
+      background: #22d3ee;
+    }
+
+    /* BACK */
+    .back {
+      margin-top: 25px;
+      display: inline-block;
+      color: #38bdf8;
+      cursor: pointer;
       font-weight: bold;
     }
 
@@ -68,11 +114,9 @@
       display: none;
     }
 
-    .back {
-      margin-top: 20px;
-      display: inline-block;
-      color: #06b6d4;
-      cursor: pointer;
+    .top-buttons {
+      text-align: center;
+      margin-top: 10px;
     }
   </style>
 </head>
@@ -80,54 +124,99 @@
 <body>
 
 <header>
-  LEGEND DATA<br>
-  <small>Data Hub</small>
+  LEGEND AA ENTERPRISE<br>
+  <small>DATA HUB</small>
 </header>
 
 <div class="container">
 
-  <div id="networks">
+  <!-- NAV -->
+  <div id="networks" class="top-buttons">
     <h2>Select Network</h2>
-    <button class="btn" onclick="showData('mtn')">MTN</button>
-    <button class="btn" onclick="showData('telecel')">Telecel</button>
-    <button class="btn" onclick="showData('airteltigo')">AirtelTigo</button>
+    <button class="btn" onclick="show('mtn')">MTN</button>
+    <button class="btn" onclick="show('telecel')">Telecel</button>
+    <button class="btn" onclick="show('airteltigo')">AirtelTigo</button>
   </div>
 
+  <!-- MTN -->
   <div id="mtn" class="hidden">
     <h2>MTN Bundles</h2>
 
     <h3>Small Bundles</h3>
     <div class="grid">
-      <div class="card">1GB - 6 GHC <a class="buy" href="https://wa.me/233256080002?text=1GB MTN">Buy</a></div>
-      <div class="card">2GB - 11 GHC <a class="buy" href="https://wa.me/233256080002?text=2GB MTN">Buy</a></div>
-      <div class="card">3GB - 16 GHC <a class="buy" href="https://wa.me/233256080002?text=3GB MTN">Buy</a></div>
-      <div class="card">4GB - 21 GHC <a class="buy" href="https://wa.me/233256080002?text=4GB MTN">Buy</a></div>
-      <div class="card">5GB - 25 GHC <a class="buy" href="https://wa.me/233256080002?text=5GB MTN">Buy</a></div>
+      <div class="card">1GB<div class="price">6 GHC</div><a class="buy" href="https://wa.me/233256080002?text=1GB MTN">Buy</a></div>
+      <div class="card">2GB<div class="price">11 GHC</div><a class="buy" href="https://wa.me/233256080002?text=2GB MTN">Buy</a></div>
+      <div class="card">3GB<div class="price">16 GHC</div><a class="buy" href="https://wa.me/233256080002?text=3GB MTN">Buy</a></div>
+      <div class="card">4GB<div class="price">21 GHC</div><a class="buy" href="https://wa.me/233256080002?text=4GB MTN">Buy</a></div>
+      <div class="card">5GB<div class="price">25 GHC</div><a class="buy" href="https://wa.me/233256080002?text=5GB MTN">Buy</a></div>
+    </div>
+
+    <h3>Medium Bundles</h3>
+    <div class="grid">
+      <div class="card">6GB<div class="price">30 GHC</div><a class="buy" href="https://wa.me/233256080002?text=6GB MTN">Buy</a></div>
+      <div class="card">8GB<div class="price">41 GHC</div><a class="buy" href="https://wa.me/233256080002?text=8GB MTN">Buy</a></div>
+      <div class="card">10GB<div class="price">45 GHC</div><a class="buy" href="https://wa.me/233256080002?text=10GB MTN">Buy</a></div>
+      <div class="card">15GB<div class="price">66 GHC</div><a class="buy" href="https://wa.me/233256080002?text=15GB MTN">Buy</a></div>
+      <div class="card">20GB<div class="price">86 GHC</div><a class="buy" href="https://wa.me/233256080002?text=20GB MTN">Buy</a></div>
+    </div>
+
+    <h3>Big Bundles</h3>
+    <div class="grid">
+      <div class="card">25GB<div class="price">108 GHC</div><a class="buy" href="https://wa.me/233256080002?text=25GB MTN">Buy</a></div>
+      <div class="card">30GB<div class="price">128 GHC</div><a class="buy" href="https://wa.me/233256080002?text=30GB MTN">Buy</a></div>
+      <div class="card">40GB<div class="price">167 GHC</div><a class="buy" href="https://wa.me/233256080002?text=40GB MTN">Buy</a></div>
+      <div class="card">50GB<div class="price">202 GHC</div><a class="buy" href="https://wa.me/233256080002?text=50GB MTN">Buy</a></div>
     </div>
 
     <div class="back" onclick="goBack()">← Back</div>
   </div>
 
+  <!-- TELECEL -->
   <div id="telecel" class="hidden">
     <h2>Telecel Bundles</h2>
+
+    <h3>Standard</h3>
     <div class="grid">
-      <div class="card">5GB - 27 GHC</div>
-      <div class="card">10GB - 45 GHC</div>
-      <div class="card">15GB - 66 GHC</div>
-      <div class="card">20GB - 82 GHC</div>
+      <div class="card">5GB<div class="price">27 GHC</div></div>
+      <div class="card">10GB<div class="price">45 GHC</div></div>
+      <div class="card">15GB<div class="price">66 GHC</div></div>
+      <div class="card">20GB<div class="price">82 GHC</div></div>
+    </div>
+
+    <h3>Large</h3>
+    <div class="grid">
+      <div class="card">25GB<div class="price">100 GHC</div></div>
+      <div class="card">30GB<div class="price">117 GHC</div></div>
+      <div class="card">40GB<div class="price">154 GHC</div></div>
+      <div class="card">50GB<div class="price">194 GHC</div></div>
+      <div class="card">100GB<div class="price">383 GHC</div></div>
     </div>
 
     <div class="back" onclick="goBack()">← Back</div>
   </div>
 
+  <!-- AIRTELTIGO -->
   <div id="airteltigo" class="hidden">
     <h2>AirtelTigo Bundles</h2>
+
+    <h3>Small</h3>
     <div class="grid">
-      <div class="card">1GB - 6 GHC</div>
-      <div class="card">2GB - 11 GHC</div>
-      <div class="card">3GB - 15 GHC</div>
-      <div class="card">4GB - 19 GHC</div>
-      <div class="card">5GB - 24 GHC</div>
+      <div class="card">1GB<div class="price">6 GHC</div></div>
+      <div class="card">2GB<div class="price">11 GHC</div></div>
+      <div class="card">3GB<div class="price">15 GHC</div></div>
+      <div class="card">4GB<div class="price">19 GHC</div></div>
+      <div class="card">5GB<div class="price">24 GHC</div></div>
+    </div>
+
+    <h3>Large</h3>
+    <div class="grid">
+      <div class="card">6GB<div class="price">28 GHC</div></div>
+      <div class="card">8GB<div class="price">36 GHC</div></div>
+      <div class="card">10GB<div class="price">43 GHC</div></div>
+      <div class="card">12GB<div class="price">52 GHC</div></div>
+      <div class="card">15GB<div class="price">64 GHC</div></div>
+      <div class="card">20GB<div class="price">80 GHC</div></div>
+      <div class="card">25GB<div class="price">103 GHC</div></div>
     </div>
 
     <div class="back" onclick="goBack()">← Back</div>
@@ -136,9 +225,9 @@
 </div>
 
 <script>
-  function showData(network) {
+  function show(id) {
     document.getElementById("networks").style.display = "none";
-    document.getElementById(network).style.display = "block";
+    document.getElementById(id).style.display = "block";
   }
 
   function goBack() {
