@@ -114,6 +114,21 @@
       margin-top: 10px;
     }
 
+    /* NEW PHONE INPUT STYLE */
+    .input-box {
+      text-align: center;
+      margin: 15px 0;
+    }
+
+    .input-box input {
+      padding: 10px;
+      width: 80%;
+      max-width: 300px;
+      border-radius: 10px;
+      border: none;
+      outline: none;
+    }
+
     #cartPage {
       display: none;
       padding: 20px;
@@ -164,6 +179,11 @@
 
 <div class="container">
 
+  <!-- NEW PHONE INPUT SECTION -->
+  <div class="input-box">
+    <input type="text" id="phoneNumber" placeholder="Enter recipient phone number">
+  </div>
+
   <div id="networks" class="top-buttons">
     <h2>Select Network</h2>
     <button class="btn" onclick="show('mtn')">MTN</button>
@@ -171,6 +191,7 @@
     <button class="btn" onclick="show('airteltigo')">AirtelTigo</button>
   </div>
 
+  <!-- MTN -->
   <div id="mtn" class="hidden">
     <h2>MTN Bundles</h2>
 
@@ -243,14 +264,13 @@
 </div>
 
 <script>
-let cart = [];
-
-function updateCart() {
-  document.getElementById("cartCount").innerText = cart.length;
-}
-
 function buy(name, price) {
-  let message = `Order: ${name} | Price: ${price}`;
+  let phone = document.getElementById("phoneNumber").value;
+
+  let message = 
+`Order: ${name}
+Price: ${price}
+Phone: ${phone}`;
 
   let url = "https://wa.me/233256080002?text=" + encodeURIComponent(message);
 
